@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using WFDBAPI.Models;
 
 namespace WFDBAPI.Controllers
 {
