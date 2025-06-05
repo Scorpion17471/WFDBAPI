@@ -7,41 +7,41 @@ namespace WFDBAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class RelicController : ControllerBase
+    public class WarframeController : ControllerBase
     {
-        // Controller to interact with Relic DB table
-        private readonly ILogger<RelicController> _logger;
+        // Controller to interact with Warframe DB table
+        private readonly ILogger<WarframeController> _logger;
         private readonly PrimeDBContext _dbContext;
-        public RelicController(ILogger<RelicController> logger, PrimeDBContext context)
+        public WarframeController(ILogger<WarframeController> logger, PrimeDBContext context)
         {
             _logger = logger;
             _dbContext = context;
         }
 
-        // GET: /relic
+        // GET: /warframe
         [HttpGet]
-        public RelicResponse Task()
+        public WarframeResponse Task()
         {
-            RelicResponse response = new RelicResponse();
+            WarframeResponse response = new WarframeResponse();
             try
             {
-                var dbTask = _dbContext.Relic.ToList();
+                var dbTask = _dbContext.Warframe.ToList();
                 if (dbTask != null && dbTask.Count > 0)
                 {
                     response.Status = 200;
                     response.Message = "Success";
-                    response.RelicList = dbTask;
+                    response.WarframeList = dbTask;
                 }
                 else
                 {
                     response.Status = 400;
                     response.Message = "Failure";
-                    response.RelicList = null;
+                    response.WarframeList = null;
                 }
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error fetching relics from database.");
+                _logger.LogError(ex, "Error fetching warframes from database.");
                 response.Status = 500;
                 response.Message = ex.Message;
             }
