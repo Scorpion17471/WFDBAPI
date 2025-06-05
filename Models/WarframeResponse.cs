@@ -2,11 +2,9 @@
 
 namespace WFDBAPI.Models
 {
-    public class WarframeResponse
+    public class WarframeResponse : BaseResponse
     {
-        // REST response model for relic data
+        // REST response model for warframe data
         public List<Warframe> WarframeList { get; set; }
-        public int Status { get; set; }
-        public string Message { get; set; }
     }
 }

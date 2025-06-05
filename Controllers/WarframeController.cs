@@ -20,7 +20,7 @@ namespace WFDBAPI.Controllers
 
         // GET: /warframe
         [HttpGet]
-        public WarframeResponse Task()
+        public WarframeResponse GetWarframes()
         {
             WarframeResponse response = new WarframeResponse();
             try
@@ -37,6 +37,34 @@ namespace WFDBAPI.Controllers
                     response.Status = 400;
                     response.Message = "Failure";
                     response.WarframeList = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error fetching warframes from database.");
+                response.Status = 500;
+                response.Message = ex.Message;
+            }
+            return response;
+        }
+
+        [HttpGet("{name}", Name="GetWarframeByName")]
+        public NameWarframeResponse GetWarframeByName(string name)
+        {
+            NameWarframeResponse response = new NameWarframeResponse();
+            try
+            {
+                var nameTask = _dbContext.Warframe.FirstOrDefault(x => x.Name == name);
+                if (nameTask != null)
+                {
+                    response.Status = 200;
+                    response.Message = "Success";
+                    response.Warframe = nameTask;
+                }
+                else
+                {
+                    response.Status = 400;
+                    response.Message = $"Failed to find {name}";
                 }
             }
             catch (Exception ex)

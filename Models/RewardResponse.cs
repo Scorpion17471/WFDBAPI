@@ -2,11 +2,9 @@
 
 namespace WFDBAPI.Models
 {
-    public class RewardResponse
+    public class RewardResponse : BaseResponse
     {
-        // REST response model for relic data
+        // REST response model for reward data
         public List<Reward> RewardList { get; set; }
-        public int Status { get; set; }
-        public string Message { get; set; }
     }
 }

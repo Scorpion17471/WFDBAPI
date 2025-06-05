@@ -20,7 +20,7 @@ namespace WFDBAPI.Controllers
 
         // GET: /relic
         [HttpGet]
-        public RelicResponse Task()
+        public RelicResponse GetRelics()
         {
             RelicResponse response = new RelicResponse();
             try

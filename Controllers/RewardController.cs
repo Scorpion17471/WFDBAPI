@@ -20,7 +20,7 @@ namespace WFDBAPI.Controllers
 
         // GET: /reward
         [HttpGet]
-        public RewardResponse Task()
+        public RewardResponse GetRewards()
         {
             RewardResponse response = new RewardResponse();
             try
