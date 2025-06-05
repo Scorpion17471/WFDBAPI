@@ -3,7 +3,7 @@
     public class Reward
     {
         // Reward ID for indexing
-        public required int ID { get; set; }
+        public int ID { get; set; }
         // String to store part name (neuroptics, chassis, systems, main)
         public required string PartType { get; set; }
         // String to store the rarity of the reward (common, uncommon, rare)

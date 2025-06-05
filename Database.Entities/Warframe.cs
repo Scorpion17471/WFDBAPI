@@ -3,7 +3,7 @@
     public class Warframe
     {
         // Warframe ID for indexing
-        public required int ID { get; set; }
+        public int ID { get; set; }
         // Warframe's name
         public required string Name { get; set; }
     }
