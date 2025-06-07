@@ -364,3 +364,11 @@ FodyWeavers.xsd
 
 # Saved SQL Queries
 QUERIES/
+
+.gitattributes
+
+appsettings.json
+
+appsettings.Development.json
+
+Properties/
