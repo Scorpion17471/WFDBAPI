@@ -369,4 +369,6 @@ QUERIES/
 
 appsettings.json
 
+appsettings.Development.json
+
 Properties/
