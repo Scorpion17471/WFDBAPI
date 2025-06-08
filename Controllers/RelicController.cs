@@ -54,6 +54,35 @@ namespace WFDBAPI.Controllers
             return response;
         }
 
+        // GET: /relic/{relicName} (Read/Select by Name)
+        [HttpGet("{name}", Name = "GetRelicByName")]
+        public NameRelicResponse GetRelicByName(string name)
+        {
+            NameRelicResponse response = new NameRelicResponse();
+            try
+            {
+                var nameTask = _dbContext.Relic.FirstOrDefault(x => x.Name == name);
+                if (nameTask != null)
+                {
+                    response.Status = 200;
+                    response.Message = "Success";
+                    response.Relic = nameTask;
+                }
+                else
+                {
+                    response.Status = 400;
+                    response.Message = $"Failed to find {name}";
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error fetching relics from database.");
+                response.Status = 500;
+                response.Message = ex.Message;
+            }
+            return response;
+        }
+
         // POST: /relic (Create)
         [HttpPost]
         public async Task<BaseResponse> PostRelicAsync([FromBody] Relic newRelic)
@@ -95,8 +124,6 @@ namespace WFDBAPI.Controllers
         [HttpPut("{relicName}", Name = "PutRelicAsync")]
         public async Task<BaseResponse> PutRelicAsync(string relicName, [FromBody] Relic newRelic)
         {
-            // Clear reset ID for DB autosetting
-            newRelic.ID = 0;
             BaseResponse response = new BaseResponse();
             try
             {
