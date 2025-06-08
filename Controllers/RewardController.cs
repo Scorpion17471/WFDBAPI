@@ -19,7 +19,7 @@ namespace WFDBAPI.Controllers
             _dbContext = context;
         }
 
-        // GET: /reward
+        // GET: /Reward
         [HttpGet]
         public RewardResponse GetRewards()
         {
@@ -49,8 +49,8 @@ namespace WFDBAPI.Controllers
             return response;
         }
 
-        // GET: /reward/{relicName}+{warframeName}
-        [HttpGet("{relicName}+{warframeName}", Name = "GetRewardByRelicAndFrame")]
+        // GET: /Reward/{relicName}+{warframeName}
+        [HttpGet("{relicName}+{warframeName}", Name = "GetRewardByRelicAndFrameAsync")]
         public async Task<SingleRewardResponse> GetRewardByRelicAndFrameAsync(string relicName, string warframeName)
         {
             SingleRewardResponse response = new SingleRewardResponse();
@@ -91,8 +91,8 @@ namespace WFDBAPI.Controllers
             return response;
         }
 
-        // GET: /reward/relic/{relicName}
-        [HttpGet("relic/{relicName}", Name = "GetRewardByRelicAsync")]
+        // GET: /Reward/Relic/{relicName}
+        [HttpGet("Relic/{relicName}", Name = "GetRewardByRelicAsync")]
         public async Task<RewardResponse> GetRewardByRelicAsync(string relicName)
         {
             RewardResponse response = new RewardResponse();
@@ -133,8 +133,8 @@ namespace WFDBAPI.Controllers
             return response;
         }
 
-        // GET: /reward/warframe/{warframeName}
-        [HttpGet("warframe/{warframeName}", Name = "GetRewardByWarframeAsync")]
+        // GET: /Reward/Warframe/{warframeName}
+        [HttpGet("Warframe/{warframeName}", Name = "GetRewardByWarframeAsync")]
         public async Task<RewardResponse> GetRewardByWarframeAsync(string warframeName)
         {
             RewardResponse response = new RewardResponse();
@@ -175,8 +175,8 @@ namespace WFDBAPI.Controllers
             return response;
         }
 
-        // POST: /reward/create/{warframeName}+{relicName} (Create)
-        [HttpPost("create/{warframeName}+{relicName}", Name = "PostRewardAsync")]
+        // POST: /Reward/Create/{warframeName}+{relicName} (Create)
+        [HttpPost("Create/{warframeName}+{relicName}", Name = "PostRewardAsync")]
         public async Task<BaseResponse> PostRewardAsync(string warframeName, string relicName, [FromBody] Reward newReward)
         {
             BaseResponse response = new BaseResponse();
@@ -223,8 +223,8 @@ namespace WFDBAPI.Controllers
             return response;
         }
 
-        // DELETE: /reward/delete/{warframeName}+{relicName}+{partType} (Delete)
-        [HttpDelete("delete/{warframeName}+{relicName}+{partType}", Name = "DeleteRewardAsync")]
+        // DELETE: /Reward/Delete/{warframeName}+{relicName}+{partType} (Delete)
+        [HttpDelete("Delete/{warframeName}+{relicName}+{partType}", Name = "DeleteRewardAsync")]
         public async Task<BaseResponse> DeleteRewardAsync(string warframeName, string relicName, string partType)
         {
             BaseResponse response = new BaseResponse();

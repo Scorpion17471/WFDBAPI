@@ -19,7 +19,7 @@ namespace WFDBAPI.Controllers
             _dbContext = context;
         }
 
-        // GET: /relic (Read/Select)
+        // GET: /Relic (Read/Select)
         [HttpGet]
         public RelicResponse GetRelics()
         {
@@ -54,7 +54,7 @@ namespace WFDBAPI.Controllers
             return response;
         }
 
-        // GET: /relic/{relicName} (Read/Select by Name)
+        // GET: /Relic/{relicName} (Read/Select by Name)
         [HttpGet("{name}", Name = "GetRelicByName")]
         public NameRelicResponse GetRelicByName(string name)
         {
@@ -83,8 +83,8 @@ namespace WFDBAPI.Controllers
             return response;
         }
 
-        // POST: /relic (Create)
-        [HttpPost]
+        // POST: /Relic/Create (Create)
+        [HttpPost("Create", Name = "PostRelicAsync")]
         public async Task<BaseResponse> PostRelicAsync([FromBody] Relic newRelic)
         {
             // DB Table autosets ID to increment with each entry
@@ -120,54 +120,8 @@ namespace WFDBAPI.Controllers
             return response;
         }
 
-        // PUT: /relic (Update)
-        [HttpPut("{relicName}", Name = "PutRelicAsync")]
-        public async Task<BaseResponse> PutRelicAsync(string relicName, [FromBody] Relic newRelic)
-        {
-            BaseResponse response = new BaseResponse();
-            try
-            {
-                // Attempt to find relic in DB
-                var dbTask = await _dbContext.Relic.FirstOrDefaultAsync<Relic>(x => x.Name == relicName.ToUpper());
-                if (dbTask != null)
-                {
-                    // Update Name/Vaulted status and attempt to save to DB
-                    dbTask.Name = newRelic.Name.ToUpper();
-                    dbTask.Vaulted = newRelic.Vaulted;
-
-                    var changed = await _dbContext.SaveChangesAsync();
-
-                    if (changed != 0)
-                    {
-                        // Successfully updated DB record
-                        response.Status = 200;
-                        response.Message = "Successfully updated relic";
-                    }
-                    else
-                    {
-                        // Failed to update DB record
-                        response.Status = 400;
-                        response.Message = "Failed to update relic";
-                    }
-                }
-                else
-                {
-                    // Failed to find relic in DB
-                    response.Status = 404;
-                    response.Message = "Failed to find relic in database";
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error adding relic to database.");
-                response.Status = 500;
-                response.Message = ex.Message;
-            }
-            return response;
-        }
-
-        // PATCH: /relic (Update Partial (Vaulted Status))
-        [HttpPatch("{relicName}", Name = "PatchRelicAsync")]
+        // PATCH: /Relic/Update/{relicName} (Update)
+        [HttpPatch("Update/{relicName}", Name = "PatchRelicAsync")]
         public async Task<BaseResponse> PatchRelicAsync(string relicName, [FromBody] bool newVaulted)
         {
             BaseResponse response = new BaseResponse();
@@ -211,8 +165,8 @@ namespace WFDBAPI.Controllers
             return response;
         }
 
-        // DELETE: /relic (Delete)
-        [HttpDelete]
+        // DELETE: /Relic/Remove (Delete)
+        [HttpDelete("Remove", Name = "DeleteRelicAsync")]
         public async Task<BaseResponse> DeleteRelicAsync([FromBody] string relicName)
         {
             BaseResponse response = new BaseResponse();

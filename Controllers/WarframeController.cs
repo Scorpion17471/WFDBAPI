@@ -19,7 +19,7 @@ namespace WFDBAPI.Controllers
             _dbContext = context;
         }
 
-        // GET: /warframe
+        // GET: /Warframe
         [HttpGet]
         public WarframeResponse GetWarframes()
         {
@@ -49,7 +49,7 @@ namespace WFDBAPI.Controllers
             return response;
         }
 
-        // GET: /warframe/{name}
+        // GET: /Warframe/{name}
         [HttpGet("{name}", Name="GetWarframeByName")]
         public NameWarframeResponse GetWarframeByName(string name)
         {
@@ -78,8 +78,8 @@ namespace WFDBAPI.Controllers
             return response;
         }
 
-        // POST: /warframe (Create)
-        [HttpPost]
+        // POST: /Warframe/Create (Create)
+        [HttpPost("Create", Name = "PostWarframeAsync")]
         public async Task<BaseResponse> PostWarframeAsync([FromBody] Warframe newWarframe)
         {
             // DB Table autosets ID to increment with each entry
@@ -115,7 +115,7 @@ namespace WFDBAPI.Controllers
             return response;
         }
 
-        // PUT: /Warframe (Update)
+        // PUT: /Warframe/Update/{WarframeName} (Update)
         [HttpPut("{WarframeName}", Name = "PutWarframeAsync")]
         public async Task<BaseResponse> PutWarframeAsync(string WarframeName, [FromBody] Warframe newWarframe)
         {
@@ -160,8 +160,8 @@ namespace WFDBAPI.Controllers
             return response;
         }
 
-        // DELETE: /Warframe (Delete)
-        [HttpDelete]
+        // DELETE: /Warframe/Remove (Delete)
+        [HttpDelete("Remove", Name = "DeleteWarframeAsync")]
         public async Task<BaseResponse> DeleteWarframeAsync([FromBody] string WarframeName)
         {
             BaseResponse response = new BaseResponse();
