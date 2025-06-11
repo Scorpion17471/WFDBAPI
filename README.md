@@ -2,11 +2,26 @@ This is an API I am creating for personal development growth. It is a work in pr
 It is a .NET 8 Web API that uses EFCore to connect to an Azure SQL Server database.
 It uses data from the game **Warframe** and its *Prime Parts/Relic* system to create reward tables of warframe parts from relics.
 
+Warframe Wiki Examples:
+	-Warframe: https://wiki.warframe.com/w/Mesa/Prime
+ 	-Relic: https://wiki.warframe.com/w/Axi_M3
+  	-Reward: https://wiki.warframe.com/w/Axi_M3 (Same page as relics, specifically the drop table with components and rewards displayed)
+
 DB Tables:
 
-	- Relic: (ID, Name)
-	- Warframe: (ID, Name)
-	- Reward: (ID, PartType, Rarity, RelicID (*References Relic.ID*), WarframeID (*References Warframe.ID*))
+	- Relic: 
+ 		-ID int IDENTITY PK
+   		-Vaulted bit NOT NULL
+   		-Name varchar 20 NOT NULL
+	- Warframe:
+ 		-ID int IDENTITY PK
+   		-Name varchar 25 UNIQUE NOT NULL
+	- Reward:)
+   		-ID int IDENTITY PK
+   		-PartType varchar 15 NOT NULL (CHECK = 'Main', 'Neuroptics', 'Chassis', 'Systems')
+   		-Rarity varchar 10 NOT NULL (CHECK = 'Common', 'Uncommon', 'Rare', 'UNKNOWN')
+   		-RelicID int FK (Relic.ID)
+   		-WarframeID int FK (Warframe.ID)
 
 API Endpoints:
 	
