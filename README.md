@@ -3,6 +3,7 @@ It is a .NET 8 Web API that uses EFCore to connect to an Azure SQL Server databa
 It uses data from the game **Warframe** and its *Prime Parts/Relic* system to create reward tables of warframe parts from relics.
 
 Warframe Wiki Examples:
+
 	-Warframe: https://wiki.warframe.com/w/Mesa/Prime
  	-Relic: https://wiki.warframe.com/w/Axi_M3
   	-Reward: https://wiki.warframe.com/w/Axi_M3 (Same page as relics, specifically the drop table with components and rewards displayed)
