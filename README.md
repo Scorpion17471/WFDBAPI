@@ -1,4 +1,4 @@
-This is an API I am creating for personal development growth. It is a work in progress and will be updated frequently.
+This is an API I created for personal development growth.
 It is a .NET 8 Web API that uses EFCore to connect to an Azure SQL Server database.
 It uses data from the game **Warframe** and its *Prime Parts/Relic* system to create reward tables of warframe parts from relics.
 
